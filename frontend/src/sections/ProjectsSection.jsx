@@ -9,7 +9,7 @@ const projects = [
     id: "kiostec",
     name: "KiosTec – Sistema de gestión para bibliotecas",
     role: "Residencia profesional · Full Stack",
-    period: "2023 – 2025 · TecNM–ITT",
+    period: "2025 · TecNM–ITT",
     summary:
       "Plataforma completa para las bibliotecas del ITT: kioscos de acceso, panel administrativo, préstamos, reportes y dashboards basados en datos.",
     stack: ["React", "Node.js", "PostgreSQL", "Tailwind", "ApexCharts"],
@@ -34,11 +34,11 @@ const projects = [
     id: "qruniverse",
     name: "QR Universe – Plataforma de códigos QR",
     role: "Proyecto propio · Full Stack",
-    period: "2024 – 2025",
+    period: "2025",
     summary:
       "Aplicación moderna para crear, organizar y personalizar códigos QR con panel de administración, métricas y experiencia visual cuidada.",
     stack: ["React", "Vite", "Node.js", "PostgreSQL", "Tailwind"],
-    badge: "En desarrollo",
+    badge: "Producción",
     accent: "from-fuchsia-500/70 via-sky-400/70 to-amber-300/70",
 
     // ✅ Agregado — detalles del proyecto
