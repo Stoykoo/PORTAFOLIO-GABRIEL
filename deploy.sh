@@ -1,4 +1,5 @@
 #!/bin/bash
+
 cd /var/www/PORTAFOLIO-GABRIEL/frontend
 
 echo "📦 Actualizando repo..."
