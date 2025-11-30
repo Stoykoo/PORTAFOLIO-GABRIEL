@@ -117,9 +117,13 @@ export default function HeroSection() {
                   {personalInfo.location}
                 </p>
               </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-400 text-xl font-bold text-slate-950 shadow-[0_0_40px_rgba(16,185,129,0.7)]">
-                GS
-              </div>
+              <div className="h-12 w-12 overflow-hidden rounded-2xl border border-brand-500/60 bg-slate-950/80 shadow-[0_0_40px_rgba(16,185,129,0.7)]">
+                <img
+                    src="/avatar-smoking.png"
+                    alt="Avatar de Gabriel Stoyko"
+                    className="h-full w-full object-cover"
+                />
+                </div>
             </div>
 
             <div className="mb-4 space-y-3 text-xs text-slate-300">

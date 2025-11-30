@@ -1,7 +1,7 @@
 // COMMAND PALETTE
 
 import { useEffect, useMemo, useState } from "react";
-import { Command, Mail, Github, Linkedin, Hash } from "lucide-react";
+import { Command, Mail, Github, Linkedin, Hash, FileText } from "lucide-react";
 import { personalInfo } from "../../data/personal";
 
 const actions = [
@@ -49,6 +49,21 @@ const actions = [
     type: "link",
     href: `mailto:${personalInfo.email}`,
     icon: Mail,
+  },
+    {
+    group: "Navegación",
+    label: "Ir a CV",
+    shortcut: "V",
+    type: "scroll",
+    target: "cv",
+  },
+   {
+    group: "Enlaces",
+    label: "Abrir CV (PDF)",
+    shortcut: "P",
+    type: "link",
+    href: "/CV_GABRIEL_STOYKO_MARTINEZ_GARCIA.pdf",
+    icon: FileText,
   },
 ];
 

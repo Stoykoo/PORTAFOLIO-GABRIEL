@@ -1,0 +1,102 @@
+/* === Animaciones de nieve === */
+@keyframes snow-fall-slow {
+  0% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+@keyframes snow-fall-fast {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(110vh) translateX(8vw);
+    opacity: 0;
+  }
+}
+
+/* Santa con trineo */
+@keyframes santa-fly {
+  0% {
+    transform: translateX(-25vw) translateY(0);
+  }
+  40% {
+    transform: translateX(40vw) translateY(-4vh);
+  }
+  60% {
+    transform: translateX(70vw) translateY(-1vh);
+  }
+  100% {
+    transform: translateX(120vw) translateY(1vh);
+  }
+}
+
+/* luces que titilan */
+@keyframes twinkle-soft {
+  0% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
+.snowflake {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.9);
+  animation-name: snow-fall-slow;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.snowflake-front {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.95);
+  box-shadow: 0 0 12px rgba(248, 250, 252, 0.9);
+  animation-name: snow-fall-fast;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.santa-sleigh {
+  position: absolute;
+  top: 7vh;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #facc15;
+  animation: santa-fly 26s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.85));
+  will-change: transform;
+  pointer-events: none;
+}
+
+.santa-sleigh span {
+  display: inline-block;
+}
+
+/* luces suaves */
+.twinkle-soft {
+  animation: twinkle-soft 1.6s ease-in-out infinite alternate;
+}
