@@ -15,7 +15,7 @@ export default function App() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection /> {/* 👈 aquí */}
+        <ProjectsSection />
         <CvSection />
         <JourneySection />
         <ContactSection />

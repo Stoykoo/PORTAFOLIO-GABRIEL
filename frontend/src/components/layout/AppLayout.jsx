@@ -60,20 +60,24 @@ export default function AppLayout({ children }) {
             </motion.div>
 
             <motion.nav
-                initial={{ y: -16, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="flex items-center gap-4 text-xs font-medium text-slate-300"
+              initial={{ y: -16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="
+                flex items-center gap-4 text-xs font-medium text-slate-300
+                overflow-x-auto whitespace-nowrap scrollbar-none
+                sm:overflow-visible sm:whitespace-normal
+              "
             >
-                {sections.map((s) => (
+              {sections.map((s) => (
                 <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    className="hover:text-brand-400"
+                  key={s.id}
+                  href={`#${s.id}`}
+                  className="hover:text-brand-400 px-1"
                 >
-                    {s.label}
+                  {s.label}
                 </a>
-                ))}
+              ))}
             </motion.nav>
             </header>
 
