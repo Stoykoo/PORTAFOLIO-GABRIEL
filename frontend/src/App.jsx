@@ -1,20 +1,24 @@
-// TITULO
-// SUBTITULO
+// APP
+
+import AppLayout from "./components/layout/AppLayout";
+import HeroSection from "./sections/HeroSection";
+import AboutSection from "./sections/AboutSection";
+import SkillsSection from "./sections/SkillsSection";
+import JourneySection from "./sections/JourneySection";
+import ContactSection from "./sections/ContactSection";
+import CommandPalette from "./components/common/CommandPalette";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-50">
-      <div className="space-y-4 text-center">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-slate-400">
-          // Portafolio
-        </p>
-        <h1 className="text-3xl font-semibold sm:text-4xl">
-          Gabriel Stoyko Martínez García
-        </h1>
-        <p className="text-sm text-slate-300 sm:text-base">
-          Ingeniero en Sistemas Computacionales &amp; Full Stack Web Developer
-        </p>
-      </div>
-    </div>
+    <>
+      <AppLayout>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <JourneySection />
+        <ContactSection />
+      </AppLayout>
+      <CommandPalette />
+    </>
   );
 }
