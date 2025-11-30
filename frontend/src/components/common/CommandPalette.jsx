@@ -65,6 +65,13 @@ const actions = [
     href: "/CV_GABRIEL_STOYKO_MARTINEZ_GARCIA.pdf",
     icon: FileText,
   },
+  {
+    group: "Navegación",
+    label: "Ir a Proyectos",
+    shortcut: "P",
+    type: "scroll",
+    target: "projects",
+  },
 ];
 
 function runAction(action) {

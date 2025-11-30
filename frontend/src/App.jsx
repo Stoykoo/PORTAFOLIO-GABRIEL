@@ -1,9 +1,8 @@
-// APP
-
 import AppLayout from "./components/layout/AppLayout";
 import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
 import SkillsSection from "./sections/SkillsSection";
+import ProjectsSection from "./sections/ProjectsSection";
 import JourneySection from "./sections/JourneySection";
 import ContactSection from "./sections/ContactSection";
 import CvSection from "./sections/CvSection";
@@ -16,6 +15,7 @@ export default function App() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
+        <ProjectsSection /> {/* 👈 aquí */}
         <CvSection />
         <JourneySection />
         <ContactSection />

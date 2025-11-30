@@ -8,6 +8,7 @@ import ChristmasOverlay from "../common/ChristmasOverlay";
 const sections = [
   { id: "about", label: "Sobre mí" },
   { id: "skills", label: "Skills" },
+  { id: "projects", label: "Proyectos" },
   { id: "cv", label: "CV" },
   { id: "journey", label: "Camino" },
   { id: "contact", label: "Contacto" },
