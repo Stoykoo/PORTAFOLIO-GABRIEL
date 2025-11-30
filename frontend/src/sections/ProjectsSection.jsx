@@ -15,8 +15,21 @@ const projects = [
     stack: ["React", "Node.js", "PostgreSQL", "Tailwind", "ApexCharts"],
     badge: "Producción",
     accent: "from-sky-500/70 via-indigo-500/70 to-emerald-400/70",
-    repoUrl: null,
+
+    // ✅ Agregado — detalles del proyecto
+    details: [
+      "Desarrollo full stack con React, Node.js y PostgreSQL.",
+      "Diseño e implementación de kioscos de acceso para dos unidades (Tomás Aquino y Otay).",
+      "Panel administrativo con métricas en tiempo real y dashboards modernos.",
+      "Módulos completos de préstamos, consultas, reportes y estadísticas.",
+      "Optimización avanzada de SQL: índices, triggers, vistas y consultas complejas.",
+      "Integración de ApexCharts para visualización profesional de datos.",
+      "Arquitectura limpia, mantenible y enfocada en producción.",
+    ],
+
+    repoUrl: null, // privado
   },
+
   {
     id: "qruniverse",
     name: "QR Universe – Plataforma de códigos QR",
@@ -27,10 +40,21 @@ const projects = [
     stack: ["React", "Vite", "Node.js", "PostgreSQL", "Tailwind"],
     badge: "En desarrollo",
     accent: "from-fuchsia-500/70 via-sky-400/70 to-amber-300/70",
-    repoUrl: "https://github.com/Stoykoo/QR-UNIVERSE", // 👈 repo público
+
+    // ✅ Agregado — detalles del proyecto
+    details: [
+      "Generación de códigos QR dinámicos y estáticos.",
+      "Personalización completa: colores, fondos, estilos y formatos.",
+      "Descarga en alta resolución para impresión profesional.",
+      "Panel de administración para gestionar QRs creados.",
+      "Analíticas básicas y vistas ordenadas por proyectos.",
+      "Frontend construido con React + Vite para máximo rendimiento.",
+      "Backend modular en Node.js + PostgreSQL.",
+    ],
+
+    repoUrl: "https://github.com/Stoykoo/QR-UNIVERSE",
   },
 ];
-
 
 export default function ProjectsSection() {
   const [openId, setOpenId] = useState(null);
@@ -58,10 +82,11 @@ export default function ProjectsSection() {
               key={project.id}
               className="group relative overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/75 p-[1px] shadow-[0_18px_60px_rgba(15,23,42,0.85)]"
             >
-              {/* borde glow */}
+              {/* Glow */}
               <div
                 className={`pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${project.accent}`}
               />
+
               <div className="relative flex h-full flex-col rounded-[22px] bg-slate-950/90 px-5 py-5 sm:px-6 sm:py-6">
                 <div className="mb-4 flex items-start justify-between gap-3">
                   <div className="space-y-1">
@@ -79,6 +104,7 @@ export default function ProjectsSection() {
                       {project.role}
                     </p>
                   </div>
+
                   <div className="flex flex-col items-end gap-2">
                     <span className="rounded-full bg-slate-900/80 px-3 py-1 text-[10px] font-semibold text-emerald-300">
                       {project.badge}
@@ -108,7 +134,7 @@ export default function ProjectsSection() {
                   ))}
                 </div>
 
-                {/* Botones + toggle de detalles */}
+                {/* Botones */}
                 <div className="mt-auto flex flex-col gap-2 pt-2 sm:flex-row sm:items-center sm:justify-between">
                   <button
                     type="button"
@@ -117,7 +143,9 @@ export default function ProjectsSection() {
                   >
                     <Server size={12} />
                     <span>
-                      {isOpen ? "Ocultar detalles del proyecto" : "Ver detalles del proyecto"}
+                      {isOpen
+                        ? "Ocultar detalles del proyecto"
+                        : "Ver detalles del proyecto"}
                     </span>
                     <ChevronDown
                       size={13}
@@ -129,34 +157,33 @@ export default function ProjectsSection() {
 
                   {project.repoUrl ? (
                     <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1.5 text-[11px] font-medium text-slate-200 group-hover:border-brand-400/80 transition-colors"
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1.5 text-[11px] font-medium text-slate-200 group-hover:border-brand-400/80 transition-colors"
                     >
-                        <Code2 size={12} />
-                        <span>Ver en GitHub</span>
+                      <Code2 size={12} />
+                      <span>Ver en GitHub</span>
                     </a>
-                    ) : (
+                  ) : (
                     <button
-                        type="button"
-                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-800/80 bg-slate-950/60 px-3 py-1.5 text-[11px] font-medium text-slate-400 cursor-default border-dashed"
+                      type="button"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-800/80 bg-slate-950/60 px-3 py-1.5 text-[11px] font-medium text-slate-400 cursor-default border-dashed"
                     >
-                        <Code2 size={12} />
-                        <span>Repositorio privado (bajo solicitud)</span>
+                      <Code2 size={12} />
+                      <span>Repositorio privado (bajo solicitud)</span>
                     </button>
-                    )}
-
+                  )}
                 </div>
 
-                {/* Detalles expandibles */}
+                {/* CONTENIDO EXPANDIBLE — Seguro con ?.map */}
                 {isOpen && (
                   <div className="mt-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-3 text-[11px] text-slate-300">
                     <p className="mb-2 text-[11px] font-semibold text-slate-200">
                       ¿Qué hice en este proyecto?
                     </p>
                     <ul className="space-y-1.5 leading-relaxed">
-                      {project.details.map((item) => (
+                      {project.details?.map((item) => (
                         <li key={item} className="flex gap-2">
                           <span className="mt-[5px] inline-block h-1 w-1 flex-shrink-0 rounded-full bg-emerald-400" />
                           <span>{item}</span>
