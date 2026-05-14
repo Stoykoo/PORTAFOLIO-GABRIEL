@@ -13,7 +13,12 @@ app.use(helmet());
 // CORS: solo permite peticiones desde tus dominios
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['http://localhost:5173', 'http://localhost:3000'];
+  : [
+      'https://mi-stoyko.online',
+      'https://www.mi-stoyko.online',
+      'http://localhost:5173',
+      'http://localhost:3000',
+    ];
 
 app.use(cors({
   origin: function (origin, callback) {
