@@ -31,6 +31,37 @@ const socialLinks = [
 ];
 
 export default function ContactSection() {
+  const [status, setStatus] = useState({ loading: false, success: false, error: null });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: false, error: null });
+
+    const formData = new FormData(e.target);
+    // Agregamos la Access Key de Web3Forms (puedes obtener la tuya gratis en web3forms.com)
+    // Por ahora uso la clave pública de prueba o puedes poner la tuya después.
+    formData.append("access_key", "51410d31-8472-4b5c-a01b-096121ccdfbd");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus({ loading: false, success: true, error: null });
+        e.target.reset();
+        setTimeout(() => setStatus((prev) => ({ ...prev, success: false })), 5000);
+      } else {
+        throw new Error(data.message || "Error al enviar el mensaje");
+      }
+    } catch (err) {
+      setStatus({ loading: false, success: false, error: err.message });
+    }
+  };
+
   return (
     <section className="space-y-6" id="contact">
       <SectionTitle>Contacto</SectionTitle>
@@ -102,7 +133,7 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           className="glass-card rounded-3xl p-6 sm:p-8"
         >
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <label className="text-xs font-semibold uppercase tracking-widest text-slate-500">
@@ -110,6 +141,8 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  required
                   placeholder="Tu nombre"
                   className="w-full rounded-xl border border-slate-800/60 bg-slate-950/50 px-4 py-3 text-sm text-slate-200 outline-none transition-all focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/50"
                 />
@@ -120,6 +153,8 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  required
                   placeholder="tu@email.com"
                   className="w-full rounded-xl border border-slate-800/60 bg-slate-950/50 px-4 py-3 text-sm text-slate-200 outline-none transition-all focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/50"
                 />
@@ -130,17 +165,33 @@ export default function ContactSection() {
                 Mensaje
               </label>
               <textarea
+                name="message"
+                required
                 rows="4"
                 placeholder="¿En qué puedo ayudarte?"
                 className="w-full resize-none rounded-xl border border-slate-800/60 bg-slate-950/50 px-4 py-3 text-sm text-slate-200 outline-none transition-all focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/50"
               ></textarea>
             </div>
+            
+            {status.error && (
+              <p className="text-xs font-medium text-rose-400">
+                ⚠️ {status.error}
+              </p>
+            )}
+
+            {status.success && (
+              <p className="text-xs font-bold text-emerald-400">
+                ✅ ¡Mensaje enviado con éxito! Te contactaré pronto.
+              </p>
+            )}
+
             <button
               type="submit"
-              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-600 py-4 text-sm font-bold text-white shadow-lg shadow-brand-900/20 transition-all hover:shadow-brand-900/40 hover:scale-[0.99] active:scale-[0.97]"
+              disabled={status.loading}
+              className={`group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-600 py-4 text-sm font-bold text-white shadow-lg shadow-brand-900/20 transition-all hover:shadow-brand-900/40 hover:scale-[0.99] active:scale-[0.97] ${status.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              Enviar Mensaje
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              {status.loading ? "Enviando..." : "Enviar Mensaje"}
+              {!status.loading && <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />}
             </button>
           </form>
         </motion.div>

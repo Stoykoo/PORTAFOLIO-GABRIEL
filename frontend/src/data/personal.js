@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Gabriel Stoyko Martínez García",
   title: "Ingeniero en Sistemas Computacionales & Full Stack Web Developer",
   location: "Tijuana, Baja California, México",
-  email: "stoykojrr@gmail.com",
+  email: "stoykopro@gmail.com",
   github: "https://github.com/Stoykoo",
   linkedin:
     "https://www.linkedin.com/in/gabriel-stoyko-martinez-garcia-708349266/",
