@@ -1,5 +1,6 @@
 // CONTACTO — CTA Premium
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, ArrowRight } from "lucide-react";
 import { SiGithub, SiLinkedin, SiDiscord } from "react-icons/si";
