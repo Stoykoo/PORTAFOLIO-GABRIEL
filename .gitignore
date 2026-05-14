@@ -1,0 +1,32 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Build
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Deploy (contiene rutas del servidor)
+deploy.sh
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
