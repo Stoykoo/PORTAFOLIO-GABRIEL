@@ -16,20 +16,72 @@ export const aboutText = {
   ],
   right: [
     "Llevo alrededor de 8 años programando, desde preparatoria hasta proyectos profesionales como mi residencia en el TecNM–ITT con KiosTec, un sistema completo de gestión para bibliotecas.",
-    "Aunque aún no cuento con experiencia laboral formal en empresas, tengo muchas ganas de trabajar, crecer y aportar soluciones reales. Programar no es solo una habilidad: es algo que genuinamente me apasiona.",
+    "Aunque mi trayectoria en empresas está iniciando, mi enfoque está en aportar soluciones reales y seguir evolucionando profesionalmente. Programar no es solo una habilidad: es algo que genuinamente me apasiona.",
   ],
 };
 
+export const skillCategories = [
+  {
+    name: "Frontend",
+    color: "from-cyan-400 to-blue-500",
+    skills: [
+      "JavaScript (ES6+)",
+      "React",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+    ],
+  },
+  {
+    name: "Backend",
+    color: "from-emerald-400 to-teal-500",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "PostgreSQL",
+      "MongoDB",
+      "JWT / Auth",
+    ],
+  },
+  {
+    name: "Herramientas",
+    color: "from-violet-400 to-purple-500",
+    skills: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "VS Code",
+      "Postman",
+      "Figma",
+      "Vercel",
+      "NPM",
+      "Linux / Ubuntu",
+    ],
+  },
+];
+
+// Flat list for backwards compat
 export const skills = [
   "JavaScript (ES6+)",
   "React",
   "Node.js",
+  "Express.js",
+  "REST APIs",
   "PostgreSQL",
+  "MongoDB",
+  "JWT / Auth",
   "Tailwind CSS",
   "HTML5",
   "CSS3",
   "Git",
   "GitHub",
+  "Docker",
+  "VS Code",
+  "Postman",
+  "Figma",
+  "Vercel",
+  "NPM",
   "Linux / Ubuntu",
 ];
 
