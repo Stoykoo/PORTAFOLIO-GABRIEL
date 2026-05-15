@@ -1,13 +1,14 @@
-// LAYOUT — Premium con navbar sticky glass, background animado, mouse glow
+// ══════════════════════════════════════════════════════════════
+// APP LAYOUT — Immersive 3D with glass navbar + Lenis scroll
+// ══════════════════════════════════════════════════════════════
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { personalInfo } from "../../data/personal";
 import { isChristmasSeason } from "../../utils/season";
 import ChristmasOverlay from "../common/ChristmasOverlay";
-import MouseGlow from "../common/MouseGlow";
-import AnimatedBackground from "../common/AnimatedBackground";
-import SectionDivider from "../common/SectionDivider";
+import Scene3D from "../canvas/Scene3D";
+import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 const sections = [
   { id: "about", label: "Sobre mí" },
@@ -23,6 +24,7 @@ const year = new Date().getFullYear();
 export default function AppLayout({ children }) {
   const christmas = isChristmasSeason();
   const [scrolled, setScrolled] = useState(false);
+  useSmoothScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -30,32 +32,21 @@ export default function AppLayout({ children }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Insert SectionDividers between children
   const childArray = Array.isArray(children) ? children : [children];
-  const withDividers = [];
-  childArray.forEach((child, idx) => {
-    withDividers.push(child);
-    if (idx < childArray.length - 1) {
-      withDividers.push(<SectionDivider key={`divider-${idx}`} />);
-    }
-  });
 
   return (
-    <div className="relative min-h-screen overflow-hidden text-slate-50 bg-soft-gradient">
-      {/* Animated background */}
-      <AnimatedBackground />
+    <div className="relative min-h-screen text-slate-50">
+      {/* ── 3D Background Scene ── */}
+      <Scene3D />
 
-      {/* Mouse glow */}
-      <MouseGlow />
-
-      {/* Overlay navideño solo en temporada */}
+      {/* ── Christmas overlay ── */}
       {christmas && <ChristmasOverlay />}
 
-      {/* Sticky navbar with glass blur */}
+      {/* ── Sticky Navbar (glass over 3D) ── */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
           scrolled
-            ? "border-b border-slate-800/50 bg-slate-950/80 shadow-lg shadow-black/20 backdrop-blur-xl"
+            ? "border-b border-white/[0.06] bg-black/60 shadow-2xl shadow-purple-900/10 backdrop-blur-2xl"
             : "bg-transparent"
         }`}
       >
@@ -66,7 +57,7 @@ export default function AppLayout({ children }) {
             transition={{ duration: 0.6 }}
             className="flex items-center gap-3"
           >
-            <div className="h-10 w-10 overflow-hidden rounded-2xl bg-slate-900/80 ring-1 ring-slate-700/70 shadow-[0_0_20px_rgba(129,140,248,0.4)] transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(129,140,248,0.6)]">
+            <div className="h-10 w-10 overflow-hidden rounded-2xl bg-black/40 ring-1 ring-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]">
               <img
                 src="/avatar-smoking.png"
                 alt="Avatar de Gabriel Stoyko"
@@ -74,10 +65,10 @@ export default function AppLayout({ children }) {
               />
             </div>
             <div className="leading-tight">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-500">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/30">
                 Portafolio
               </p>
-              <p className="text-sm font-semibold text-slate-100 flex items-center gap-1">
+              <p className="text-sm font-semibold text-white/90 flex items-center gap-1">
                 {personalInfo.name.split(" ").slice(0, 2).join(" ")}
                 {christmas && (
                   <span className="text-base" aria-hidden="true">
@@ -93,7 +84,7 @@ export default function AppLayout({ children }) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="
-              flex items-center gap-1 text-xs font-medium text-slate-400
+              flex items-center gap-1 text-xs font-medium text-white/40
               overflow-x-auto whitespace-nowrap scrollbar-none
               sm:overflow-visible sm:whitespace-normal
             "
@@ -102,7 +93,7 @@ export default function AppLayout({ children }) {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className="rounded-full px-3 py-1.5 transition-all duration-300 hover:bg-slate-800/60 hover:text-brand-300"
+                className="rounded-full px-3 py-1.5 transition-all duration-300 hover:bg-white/[0.06] hover:text-purple-300"
               >
                 {s.label}
               </a>
@@ -111,23 +102,26 @@ export default function AppLayout({ children }) {
         </div>
       </header>
 
-      <main className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-20 px-4 pb-20 pt-24 sm:px-6 lg:px-10">
-        {withDividers}
+      {/* ── Main Content (floats over 3D) ── */}
+      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-32 px-4 pb-20 pt-24 sm:px-6 lg:px-10">
+        {childArray.map((child, idx) => (
+          <div key={idx}>
+            {child}
+            {idx < childArray.length - 1 && (
+              <div className="section-divider mx-auto mt-32 max-w-xl" />
+            )}
+          </div>
+        ))}
 
-        <footer className="mt-8 border-t border-slate-800/40 pt-6 text-xs text-slate-500 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        {/* ── Footer ── */}
+        <footer className="mt-8 border-t border-white/[0.06] pt-6 text-xs text-white/30 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} Gabriel Stoyko Martínez García. Todos los derechos
             reservados.
           </p>
-          <p className="flex flex-wrap gap-3 text-slate-600">
+          <p className="flex flex-wrap gap-3 text-white/20">
             <span>
-              Código y diseño de este portafolio creados por Gabriel Stoyko.
-            </span>
-            <span className="hidden sm:inline">•</span>
-            <span>
-              Licencia MIT — consulta el archivo{" "}
-              <span className="font-mono text-slate-500">LICENSE</span> en el
-              repositorio.
+              Diseñado y desarrollado por Gabriel Stoyko.
             </span>
           </p>
         </footer>

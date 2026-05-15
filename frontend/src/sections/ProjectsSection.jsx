@@ -1,4 +1,6 @@
-// PROYECTOS — Premium con AnimatePresence y gradient borders
+// ══════════════════════════════════════════════════════════════
+// PROJECTS — Aurora border cards with depth effects
+// ══════════════════════════════════════════════════════════════
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,8 +17,8 @@ const projects = [
       "Plataforma completa para las bibliotecas del ITT: kioscos de acceso, panel administrativo, préstamos, reportes y dashboards basados en datos.",
     stack: ["React", "Node.js", "PostgreSQL", "Tailwind", "ApexCharts"],
     badge: "Producción",
-    accent: "from-cyan-500/60 via-indigo-500/60 to-emerald-400/60",
-    glowColor: "rgba(34, 211, 238, 0.15)",
+    glowColor: "rgba(168, 85, 247, 0.12)",
+    borderHover: "hover:border-purple-500/30",
     details: [
       "Desarrollo full stack con React, Node.js y PostgreSQL.",
       "Diseño e implementación de kioscos de acceso para dos unidades (Tomás Aquino y Otay).",
@@ -37,8 +39,8 @@ const projects = [
       "Aplicación moderna para crear, organizar y personalizar códigos QR con panel de administración, métricas y experiencia visual cuidada.",
     stack: ["React", "Vite", "Node.js", "PostgreSQL", "Tailwind"],
     badge: "Producción",
-    accent: "from-violet-500/60 via-pink-400/60 to-amber-300/60",
-    glowColor: "rgba(167, 139, 250, 0.15)",
+    glowColor: "rgba(20, 184, 166, 0.12)",
+    borderHover: "hover:border-teal-500/30",
     details: [
       "Generación de códigos QR dinámicos y estáticos.",
       "Personalización completa: colores, fondos, estilos y formatos.",
@@ -63,7 +65,7 @@ export default function ProjectsSection() {
     <section className="space-y-8" id="projects">
       <div className="space-y-2">
         <SectionTitle>Proyectos destacados</SectionTitle>
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-white/40">
           Sistemas reales pensados para producción, donde participo en todo el
           ciclo: diseño, desarrollo, despliegue y mejora continua.
         </p>
@@ -82,35 +84,33 @@ export default function ProjectsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group relative"
             >
-              {/* Gradient border wrapper */}
-              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-slate-700/50 via-slate-800/30 to-slate-700/50 opacity-100 transition-all duration-500 group-hover:from-brand-500/40 group-hover:via-cyan-500/30 group-hover:to-emerald-500/40 group-hover:opacity-100" />
+              {/* Aurora gradient border */}
+              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-white/[0.04] opacity-100 transition-all duration-700 group-hover:from-purple-500/30 group-hover:via-teal-500/20 group-hover:to-rose-500/30" />
 
               <div
-                className="relative flex h-full flex-col rounded-3xl bg-slate-950/90 px-5 py-5 sm:px-6 sm:py-6 transition-all duration-500"
-                style={{
-                  boxShadow: `0 20px 60px rgba(15,23,42,0.85)`,
-                }}
+                className={`relative flex h-full flex-col rounded-3xl bg-black/70 backdrop-blur-xl px-5 py-5 sm:px-6 sm:py-6 transition-all duration-500 ${project.borderHover}`}
+                style={{ boxShadow: `0 20px 60px rgba(0,0,0,0.6)` }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = `0 20px 60px ${project.glowColor}`;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = `0 20px 60px rgba(15,23,42,0.85)`;
+                  e.currentTarget.style.boxShadow = `0 20px 60px rgba(0,0,0,0.6)`;
                 }}
               >
                 {/* Header */}
                 <div className="mb-4 flex items-start justify-between gap-3">
                   <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-300">
-                        <span className="pulse-glow inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <div className="flex items-center gap-2 text-[11px] text-white/40">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.04] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse" />
                         Proyecto
                       </span>
                       <span>· {project.period}</span>
                     </div>
-                    <h3 className="text-[15px] font-bold text-slate-50">
+                    <h3 className="text-[15px] font-bold text-white/90">
                       {project.name}
                     </h3>
-                    <p className="text-xs font-medium text-slate-400">
+                    <p className="text-xs font-medium text-white/40">
                       {project.role}
                     </p>
                   </div>
@@ -119,18 +119,18 @@ export default function ProjectsSection() {
                     <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-[10px] font-bold text-emerald-300 ring-1 ring-emerald-500/20">
                       {project.badge}
                     </span>
-                    <div className={`flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br ${project.accent} shadow-lg`}>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500/20 to-teal-500/20 shadow-lg">
                       {index === 0 ? (
-                        <MonitorSmartphone size={18} className="text-white" />
+                        <MonitorSmartphone size={18} className="text-white/70" />
                       ) : (
-                        <Code2 size={18} className="text-white" />
+                        <Code2 size={18} className="text-white/70" />
                       )}
                     </div>
                   </div>
                 </div>
 
                 {/* Summary */}
-                <p className="mb-4 text-[13px] leading-relaxed text-slate-300">
+                <p className="mb-4 text-[13px] leading-relaxed text-white/50">
                   {project.summary}
                 </p>
 
@@ -139,7 +139,7 @@ export default function ProjectsSection() {
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full bg-slate-900/80 px-2.5 py-1 text-[11px] font-medium text-slate-300 ring-1 ring-slate-700/50 transition-colors duration-300 hover:ring-brand-400/40 hover:text-brand-200"
+                      className="rounded-full bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-white/50 ring-1 ring-white/[0.06] transition-colors duration-300 hover:ring-purple-400/30 hover:text-purple-200"
                     >
                       {tech}
                     </span>
@@ -151,19 +151,15 @@ export default function ProjectsSection() {
                   <button
                     type="button"
                     onClick={() => handleToggle(project.id)}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-600 to-cyan-500 px-4 py-2 text-[11px] font-semibold text-white shadow-[0_0_25px_rgba(99,102,241,0.5)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(99,102,241,0.7)] hover:scale-[1.02]"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-purple-600 to-teal-500 px-4 py-2 text-[11px] font-semibold text-white shadow-[0_0_25px_rgba(168,85,247,0.4)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] hover:scale-[1.02]"
                   >
                     <Server size={12} />
                     <span>
-                      {isOpen
-                        ? "Ocultar detalles"
-                        : "Ver detalles del proyecto"}
+                      {isOpen ? "Ocultar detalles" : "Ver detalles del proyecto"}
                     </span>
                     <ChevronDown
                       size={13}
-                      className={`transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                     />
                   </button>
 
@@ -172,20 +168,20 @@ export default function ProjectsSection() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-2 text-[11px] font-medium text-slate-200 transition-all duration-300 hover:border-brand-400/60 hover:text-brand-200"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-[11px] font-medium text-white/60 transition-all duration-300 hover:border-purple-400/40 hover:text-purple-200"
                     >
                       <ExternalLink size={12} />
                       <span>Ver en GitHub</span>
                     </a>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-slate-800/80 bg-slate-950/60 px-3 py-2 text-[11px] font-medium text-slate-500">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-white/[0.06] bg-white/[0.01] px-3 py-2 text-[11px] font-medium text-white/25">
                       <Code2 size={12} />
                       <span>Repositorio privado</span>
                     </span>
                   )}
                 </div>
 
-                {/* Expandable content with AnimatePresence */}
+                {/* Expandable details */}
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
@@ -195,8 +191,8 @@ export default function ProjectsSection() {
                       transition={{ duration: 0.35, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="mt-4 rounded-2xl border border-slate-800/60 bg-slate-950/80 p-4">
-                        <p className="mb-3 text-xs font-bold text-slate-200">
+                      <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
+                        <p className="mb-3 text-xs font-bold text-white/70">
                           ¿Qué hice en este proyecto?
                         </p>
                         <ul className="space-y-2">
@@ -206,9 +202,9 @@ export default function ProjectsSection() {
                               initial={{ x: -10, opacity: 0 }}
                               animate={{ x: 0, opacity: 1 }}
                               transition={{ delay: i * 0.05, duration: 0.3 }}
-                              className="flex gap-2 text-xs text-slate-300"
+                              className="flex gap-2 text-xs text-white/50"
                             >
-                              <span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.7)]" />
+                              <span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-purple-400 shadow-[0_0_6px_rgba(168,85,247,0.6)]" />
                               <span>{item}</span>
                             </motion.li>
                           ))}
