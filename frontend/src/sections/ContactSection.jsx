@@ -77,7 +77,7 @@ export default function ContactSection() {
           className="space-y-8"
         >
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white/90 sm:text-3xl">
+            <h3 className="text-xl font-bold text-white/90 sm:text-2xl lg:text-3xl">
               ¿Hablamos de tu próximo{" "}
               <span className="text-gradient-aurora">proyecto</span>?
             </h3>
@@ -91,7 +91,7 @@ export default function ContactSection() {
           <div className="space-y-4">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="group flex w-fit items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 transition-all duration-300 hover:border-purple-500/30 hover:bg-white/[0.04]"
+              className="group flex w-full items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 transition-all duration-300 hover:border-purple-500/30 hover:bg-white/[0.04] sm:w-fit"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 transition-colors group-hover:bg-purple-500/20">
                 <Mail size={24} />

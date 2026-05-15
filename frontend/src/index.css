@@ -12,11 +12,13 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply text-white font-sans antialiased;
     background-color: #050505;
+    overflow-x: hidden;
   }
 
   #root {

@@ -103,7 +103,7 @@ export default function AppLayout({ children }) {
       </header>
 
       {/* ── Main Content (floats over 3D) ── */}
-      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-32 px-4 pb-20 pt-24 sm:px-6 lg:px-10">
+      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-24 px-4 pb-16 pt-20 sm:px-6 sm:gap-32 sm:pt-24 lg:px-10">
         {childArray.map((child, idx) => (
           <div key={idx}>
             {child}

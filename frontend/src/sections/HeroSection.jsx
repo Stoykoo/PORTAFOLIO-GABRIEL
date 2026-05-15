@@ -1,5 +1,6 @@
 // ══════════════════════════════════════════════════════════════
 // HERO 3D — Immersive with distorted sphere + floating text
+// RESPONSIVE: sphere above on mobile, side by side on desktop
 // ══════════════════════════════════════════════════════════════
 
 import { useRef } from "react";
@@ -14,7 +15,6 @@ import {
   SiPostgresql,
   SiTailwindcss,
 } from "react-icons/si";
-import { personalInfo } from "../data/personal";
 import { palette, scene } from "../config/scene";
 
 const mainStackIcons = [
@@ -72,107 +72,120 @@ function HeroCanvas() {
 
 export default function HeroSection() {
   return (
-    <section className="grid min-h-[85vh] flex-1 gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-center">
-      <div className="space-y-8">
-        {/* Badge */}
-        <motion.p
-          initial={{ y: 16, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/[0.06] px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-purple-300/80 shadow-lg shadow-purple-900/20 backdrop-blur-sm"
-        >
-          <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse" />
-          Disponible para colaborar
-        </motion.p>
-
-        {/* Title */}
-        <motion.div
-          initial={{ y: 18, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.08 }}
-          className="space-y-4"
-        >
-          <h1 className="text-balance text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
-            Ingeniero en Sistemas{" "}
-            <span className="text-gradient-aurora">
-              Full Stack Developer
-            </span>
-          </h1>
-          <p className="max-w-xl text-[15px] leading-relaxed text-white/60">
-            Desarrollador versátil enfocado en resolver problemas de negocio y
-            convertir datos complejos en productos digitales elegantes,
-            mantenibles y listos para producción.
-          </p>
-          <p className="max-w-xl text-sm text-white/40">
-            Experiencia construyendo sistemas basados en datos, dashboards y
-            plataformas completas como{" "}
-            <span className="font-medium text-purple-300/80">KiosTec</span> y{" "}
-            <span className="font-medium text-teal-300/80">QR Universe</span>,
-            del backend a la interfaz.
-          </p>
-        </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ y: 18, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.12 }}
-          className="flex flex-wrap items-center gap-4"
-        >
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(168,85,247,0.6)] hover:scale-[1.02]"
-          >
-            <Mail size={16} />
-            Contáctame
-            <Sparkles size={14} className="opacity-0 transition-opacity group-hover:opacity-100" />
-          </a>
-
-          <a
-            href="#about"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-purple-400/30 hover:text-purple-200 hover:bg-white/[0.06]"
-          >
-            <ArrowDownCircle size={16} />
-            Ver más de mí
-          </a>
-        </motion.div>
-
-        {/* Stack icons */}
-        <motion.div
-          initial={{ y: 18, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex flex-wrap items-center gap-4"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/20">
-            Stack principal
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {mainStackIcons.map(({ Icon, color, label }) => (
-              <div
-                key={label}
-                title={label}
-                className="group flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] ring-1 ring-white/[0.08] backdrop-blur-sm transition-all duration-300 hover:ring-purple-400/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:scale-110"
-              >
-                <Icon className={`${color} transition-transform duration-300 group-hover:scale-110`} size={18} />
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* ── 3D Sphere ── */}
-      <motion.aside
-        initial={{ x: 40, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.15 }}
-        className="relative aspect-square w-full max-w-md mx-auto"
+    <section className="flex min-h-[90vh] flex-col justify-center gap-6">
+      {/* ── 3D Sphere — PRIMERO en mobile, a la derecha en desktop ── */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        className="relative mx-auto h-52 w-52 sm:h-64 sm:w-64 md:hidden"
       >
         <HeroCanvas />
+        <div className="absolute inset-[10%] rounded-full bg-gradient-to-br from-purple-600/20 via-teal-500/10 to-rose-400/10 blur-3xl pointer-events-none" />
+      </motion.div>
 
-        {/* Glow ring behind sphere */}
-        <div className="absolute inset-[10%] rounded-full bg-gradient-to-br from-purple-600/10 via-teal-500/5 to-rose-400/5 blur-3xl pointer-events-none" />
-      </motion.aside>
+      {/* ── Grid: text + sphere side by side on desktop ── */}
+      <div className="grid gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-center">
+        {/* ── Text Content ── */}
+        <div className="space-y-6 min-w-0">
+          {/* Badge */}
+          <motion.p
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/[0.06] px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.15em] text-purple-300/80 shadow-lg shadow-purple-900/20 backdrop-blur-sm"
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse" />
+            Disponible para colaborar
+          </motion.p>
+
+          {/* Title */}
+          <motion.div
+            initial={{ y: 18, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="space-y-3"
+          >
+            <h1 className="text-3xl font-extrabold leading-[1.1] text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+              Ingeniero en Sistemas{" "}
+              <span className="text-gradient-aurora">
+                Full Stack Developer
+              </span>
+            </h1>
+            <p className="text-sm leading-relaxed text-white/60 sm:text-[15px]">
+              Desarrollador versátil enfocado en resolver problemas de negocio y
+              convertir datos complejos en productos digitales elegantes,
+              mantenibles y listos para producción.
+            </p>
+            <p className="text-xs leading-relaxed text-white/40 sm:text-sm">
+              Experiencia construyendo sistemas basados en datos, dashboards y
+              plataformas completas como{" "}
+              <span className="font-medium text-purple-300/80">KiosTec</span> y{" "}
+              <span className="font-medium text-teal-300/80">QR Universe</span>,
+              del backend a la interfaz.
+            </p>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ y: 18, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.12 }}
+            className="flex flex-wrap items-center gap-3"
+          >
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-teal-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(168,85,247,0.6)] hover:scale-[1.02]"
+            >
+              <Mail size={15} />
+              Contáctame
+              <Sparkles size={13} className="opacity-0 transition-opacity group-hover:opacity-100" />
+            </a>
+
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-purple-400/30 hover:text-purple-200 hover:bg-white/[0.06]"
+            >
+              <ArrowDownCircle size={15} />
+              Ver más de mí
+            </a>
+          </motion.div>
+
+          {/* Stack icons */}
+          <motion.div
+            initial={{ y: 18, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="flex flex-wrap items-center gap-3"
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/20">
+              Stack principal
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {mainStackIcons.map(({ Icon, color, label }) => (
+                <div
+                  key={label}
+                  title={label}
+                  className="group flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] ring-1 ring-white/[0.08] backdrop-blur-sm transition-all duration-300 hover:ring-purple-400/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:scale-110 sm:h-10 sm:w-10"
+                >
+                  <Icon className={`${color} transition-transform duration-300 group-hover:scale-110`} size={16} />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── 3D Sphere — only on desktop ── */}
+        <motion.aside
+          initial={{ x: 40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="relative hidden aspect-square w-full max-w-md mx-auto md:block"
+        >
+          <HeroCanvas />
+          <div className="absolute inset-[10%] rounded-full bg-gradient-to-br from-purple-600/10 via-teal-500/5 to-rose-400/5 blur-3xl pointer-events-none" />
+        </motion.aside>
+      </div>
     </section>
   );
 }

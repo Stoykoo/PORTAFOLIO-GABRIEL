@@ -71,7 +71,7 @@ export default function ProjectsSection() {
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         {projects.map((project, index) => {
           const isOpen = openId === project.id;
 
@@ -100,7 +100,7 @@ export default function ProjectsSection() {
                 {/* Header */}
                 <div className="mb-4 flex items-start justify-between gap-3">
                   <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 text-[11px] text-white/40">
+                    <div className="flex flex-wrap items-center gap-2 text-[11px] text-white/40">
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.04] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50">
                         <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse" />
                         Proyecto
